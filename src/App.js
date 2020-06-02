@@ -9,6 +9,7 @@ import Navbar from './Component/Navbar/Navbar'
 import Paypal from './Component/Paypal/Paypal';
 import Footer from './Component/Footer/Footer';
 import NotFound from './Component/NotFound/NotFound';
+import Payment from './Component/Payment/Payment';
 
 function App() {
   
@@ -24,6 +25,9 @@ function App() {
         </Route>
         <Route path="/membershipFrom">
           <MembershipForm />
+        </Route>
+        <Route path="/payment">
+          <Payment />
         </Route>
         <Route path="*">
             <NotFound />
