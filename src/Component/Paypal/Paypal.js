@@ -79,14 +79,13 @@ class PaypalButton extends React.Component {
     const { showButtons, loading, paid } = this.state;
 
     return (
-        <div className="container">
+        <div className="container d-flex justify-content-center">
             {loading}
 
             {showButtons && (
             <div>
                 <div>
-                <h2>Items: Mercedes G-Wagon</h2>
-                <h2>Total checkout Amount $200</h2>
+                    <h2>Please checkout your Amount</h2>
                 </div>
 
                 <PayPalButton

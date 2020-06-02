@@ -6,7 +6,7 @@ import anotherCard from '../../Images/credit-cards_amex.png';
 import paypal from '../../Images/Bitmap.png'
 function Payment() {
     return (
-        <div className="pt-2">
+        <div className="container pt-2">
             <div className="container heightWidth pt-2">
                 <div className="container">
                     <div className="row">
@@ -61,6 +61,14 @@ function Payment() {
                     <div className="container">
                         <div className="row">
                             <div className="col-md-8 ">
+                            <div class="form-group">
+                                <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="gridCheck"/>
+                                <label class="form-check-label" for="gridCheck">
+                                    PayPal
+                                </label>
+                                </div>
+                            </div>
                                 <h3>PayPal</h3>
                                 <p>You will be redirected to PayPal website to complete your purchase securely.</p>
                             </div>
@@ -74,6 +82,9 @@ function Payment() {
                         </div>
                     </div>
                 </div>
+            </div>
+            <div className="d-flex justify-content-end pt-2">
+                <button className="btn btn-warning"> <a style={{textDecoration: 'none'}} href="/paypal">Next</a></button>
             </div>
         </div>
     )

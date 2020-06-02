@@ -20,14 +20,18 @@ function App() {
           <Navbar />
           <Footer />
         </Route>
-        <Route path="/membershipFrom/paypal">
+        <Route path="/paypal">
           <Paypal />
         </Route>
         <Route path="/membershipFrom">
+          <Navbar />
           <MembershipForm />
+          <Footer />
         </Route>
         <Route path="/payment">
+          <Navbar />
           <Payment />
+          <Footer />
         </Route>
         <Route path="*">
             <NotFound />
