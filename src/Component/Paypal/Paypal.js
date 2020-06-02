@@ -1,76 +1,116 @@
+import React from "react";
+import ReactDOM from "react-dom";
+import scriptLoader from "react-async-script-loader";
 
-import React, { useState, useRef, useEffect } from 'react';
-import chair from './product.png';
-import gif from './group.png';
+const CLIENT = {
+    sandbox:"AaHpJXfMhbSqRfR4TuBys8jZBJTyNGCZLkgW5o5HzsUqzOqxM67cT_VJr9i9iFdWsDwmwaOt9ER3f1ex",
+    production:"EHN7a812tM2SwkMS8f52mAmsanCFo78_xOK7IoOn5f0HIXbWTRnOgzngzxmuYRZIYgmUIsZduZhRmPQD"
+};
 
-function Product({ product }) {
-    const [paidFor, setPaidFor] = useState(false);
-    const [error, setError] = useState(null);
-    const paypalRef = useRef();
-    
-        useEffect(() => {
-        window.paypal
-            .Buttons({
-            createOrder: (data, actions) => {
-                return actions.order.create({
-                purchase_units: [
-                    {
-                    description: product.description,
-                    amount: {
-                        currency_code: 'USD',
-                        value: product.price,
-                    },
-                    },
-                ],
-                });
-            },
-            onApprove: async (data, actions) => {
-                const order = await actions.order.capture();
-                setPaidFor(true);
-                console.log(order);
-            },
-            onError: err => {
-                setError(err);
-                console.error(err);
-            },
-            })
-            .render(paypalRef.current);
-        }, [product.description, product.price]);
-    
-        if (paidFor) {
-        return (
-            <div>
-            <h1>Congrats, you just bought {product.name}!</h1>
-            <img alt={product.description} src={gif} />
-            </div>
-        );
-}
+const CLIENT_ID =
+    process.env.NODE_ENV === "production" ? CLIENT.production : CLIENT.sandbox;
 
-    return (
-        <div>
-            {error && <div>Uh oh, an error occurred! {error.message}</div>}
-            <h1>
-            {product.description} for ${product.price}
-            </h1>
-            <img alt={product.description} src={product.image} width="200" />
-            <div ref={paypalRef} />
-        </div>
-    );
-}
+let PayPalButton = null;
+class PaypalButton extends React.Component {
+    constructor(props) {
+        super(props);
 
-function Paypal() {
-    const product = {
-        price: 777.77,
-        name: 'comfy chair',
-        description: 'fancy chair, like new',
-        image: chair,
+        this.state = {
+        showButtons: false,
+        loading: true,
+        paid: false
     };
 
-    return (
-        <div className="App">
-        <Product product={product} />
-        </div>
-    );
+    window.React = React;
+    window.ReactDOM = ReactDOM;
 }
 
-export default Paypal;
+    componentDidMount() {
+        const { isScriptLoaded, isScriptLoadSucceed } = this.props;
+
+        if (isScriptLoaded && isScriptLoadSucceed) {
+        PayPalButton = window.paypal.Buttons.driver("react", { React, ReactDOM });
+        this.setState({ loading: false, showButtons: true });
+        }
+    }
+
+    componentWillReceiveProps(nextProps) {
+        const { isScriptLoaded, isScriptLoadSucceed } = nextProps;
+
+        const scriptJustLoaded =
+        !this.state.showButtons && !this.props.isScriptLoaded && isScriptLoaded;
+
+        if (scriptJustLoaded) {
+        if (isScriptLoadSucceed) {
+            PayPalButton = window.paypal.Buttons.driver("react", {
+            React,
+            ReactDOM
+            });
+            this.setState({ loading: false, showButtons: true });
+        }
+        }
+    }
+    createOrder = (data, actions) => {
+        return actions.order.create({
+        purchase_units: [
+            {
+            description: +"Mercedes G-Wagon",
+            amount: {
+                currency_code: "USD",
+                value: 200
+            }
+            }
+        ]
+        });
+    };
+
+    onApprove = (data, actions) => {
+        actions.order.capture().then(details => {
+        const paymentData = {
+            payerID: data.payerID,
+            orderID: data.orderID
+        };
+        console.log("Payment Approved: ", paymentData);
+        this.setState({ showButtons: false, paid: true });
+        });
+    };
+
+    render() {
+    const { showButtons, loading, paid } = this.state;
+
+    return (
+        <div className="container">
+            {loading}
+
+            {showButtons && (
+            <div>
+                <div>
+                <h2>Items: Mercedes G-Wagon</h2>
+                <h2>Total checkout Amount $200</h2>
+                </div>
+
+                <PayPalButton
+                createOrder={(data, actions) => this.createOrder(data, actions)}
+                onApprove={(data, actions) => this.onApprove(data, actions)}
+                />
+            </div>
+            )}
+
+        {paid && (
+            <div className="main">
+                <h2>
+                Congrats! you just paid for that picture. Work a little harder and
+                you'll be able to afford the car itself{" "}
+                <span role="img" aria-label="emoji">
+                    {" "}
+                    😉
+                </span>
+                </h2>
+            </div>
+            )}
+        </div>
+        );
+    }
+}
+
+export default scriptLoader(`https://www.paypal.com/sdk/js?client-id=${CLIENT_ID}`)(PaypalButton);

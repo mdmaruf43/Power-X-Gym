@@ -155,7 +155,7 @@ function MembershipForm() {
                 </div>
                 
                 <div className="d-flex justify-content-end">
-                    <button type="submit" className="btn btn-warning text-right">Next</button>
+                    <a href="/membershipFrom/paypal"><button type="submit" className="btn btn-warning">Next</button></a>
                 </div>
             </form>
         </div>
