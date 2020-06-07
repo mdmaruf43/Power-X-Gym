@@ -40,7 +40,6 @@ const Workout = () => {
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div >
