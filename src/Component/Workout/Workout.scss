@@ -1,0 +1,76 @@
+%cardBody{
+    height: 350px;
+    color: white;
+    background-repeat: no-repeat;
+}
+
+
+.workOut{
+    height: 600px;
+}
+
+.img-1{
+    background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url('../../Images/hipcravo-5UbIqV58CW8-unsplash.jpg');
+    background-size: 100%, 100%;   
+    @extend %cardBody;
+
+}
+.img-2{
+    background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url('../../Images/daniel-apodaca-WdoQio6HPVA-unsplash.jpg');
+    background-size: 100%, 140%;  
+    @extend %cardBody;
+}
+.img-3{
+    background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url('../../Images/penguinuhh-8VI6WwEEEHw-unsplash.jpg');
+    background-size: 100%, 100%;  
+    @extend %cardBody;
+}
+.trainingImage1{
+    background-image: url('../../Images/bruce-mars-gJtDg6WfMlQ-unsplash.png');
+    background-size: 100%, 100%;  
+    @extend %cardBody;
+}
+
+.trainingImage2{
+    background-image: url('../../Images/arthur-edelman-qfjuh4OLdxw-unsplash.jpg');
+    background-size: 100%, 100%;  
+    @extend %cardBody;
+}
+.image1{
+    background-image: url('../../Images/victor-freitas-546919-unsplash.png');
+    background-size: 450px, 100%;  
+    @extend %cardBody;
+}
+.image2{
+    background-image: url('../../Images/baylee-gramling-5m4Z14SDL80-unsplash.jpg');
+    background-size: 100%, 100%;  
+    @extend %cardBody;
+}
+.image3{
+    background-image: url('../../Images/humphrey-muleba-LOA2mTj1vhc-unsplash.jpg');
+    background-size: 550px, 100%;  
+    @extend %cardBody;
+}
+.image4{
+    background-image: url('../../Images/alora-griffiths-TuzrzArccvc-unsplash.jpg');
+    background-size: 550px, 100%;  
+    @extend %cardBody;
+}
+.image5{
+    background-image: url('../../Images/john-fornander-FIu48iuo_4g-unsplash.jpg');
+    background-size: 100%, 100%;  
+    @extend %cardBody;
+}
+.image6{
+    background-image: url('../../Images/sven-mieke-Lx_GDv7VA9M-unsplash.jpg');
+    background-size: 600px, 100%;  
+    @extend %cardBody;
+}
+
+.card-body{
+    img{
+        margin-bottom: 10%;
+    }
+    
+}
+
