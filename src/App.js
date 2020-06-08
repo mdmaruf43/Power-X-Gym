@@ -24,29 +24,29 @@ function App() {
     <Router>
       <Switch>
         <Route path="/ourClasses">
-          <Navbar></Navbar>
-          <Classes></Classes>
-          <Footer></Footer>
+          <Navbar />
+          <Classes />
+          <Footer />
         </Route>
         <Route path="/productDetails/:category">
-          <Navbar></Navbar>
-          <ProductDetails></ProductDetails>
-          <Footer></Footer>
+          <Navbar />
+          <ProductDetails />
+          <Footer />
         </Route>
         <Route path="/Membership">
-          <Navbar></Navbar>
-          <MembershipForm></MembershipForm>
-          <Footer></Footer>
+          <Navbar />
+          <MembershipForm />
+          <Footer />
         </Route>
         <Route path="/membershipFrom/paypal">
-          <Navbar></Navbar>
-          <Payment></Payment>
-          <Footer></Footer>
+          <Navbar />
+          <Payment />
+          <Footer />
         </Route>
         <Route path="/paypal">
-          <Navbar></Navbar>
-          <Paypal></Paypal>
-          <Footer></Footer>
+          <Navbar />
+          <Paypal />
+          <Footer />
         </Route>
         <Route path="/membershipFrom">
           <Navbar />
@@ -54,17 +54,17 @@ function App() {
           <Footer />
         </Route>
         <Route path="/pricing">
-          <Navbar></Navbar>
-          <Pricing></Pricing>
-          <Footer></Footer>
+          <Navbar />
+          <Pricing />
+          <Footer />
         </Route>
         <Route exact path="/">
-          <Navbar></Navbar>
-          <Workout></Workout>
-          <About></About>
-          <Training></Training>
-          <ChooseUs></ChooseUs>
-          <Footer></Footer>
+          <Navbar />
+          <Workout />
+          <About />
+          <Training />
+          <ChooseUs />
+          <Footer />
         </Route>
         <Route path="*">
             <NotFound />
